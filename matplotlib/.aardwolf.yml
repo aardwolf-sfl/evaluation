@@ -1,0 +1,6 @@
+script:
+  # Just run the tests (all the machinery is done in lib/matplotlib/tests/{__init__.py, conftest.py}).
+  # Aardwolf is automatically enabled because we execute the tests inside this script.
+  - python tests.py || true
+
+# Plugins: inserted from plugins.yml file

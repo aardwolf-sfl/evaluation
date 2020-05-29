@@ -1,0 +1,16 @@
+script:
+  # Prepare the build with Aardwolf enabled
+  - ./configure --with-aardwolf=${AARDWOLF_DIR} CC=clang
+  # Path libtool and test-driver
+  - python patch_libtool.py
+  - cp test-driver.patch config/test-driver
+  # Compile the sources
+  - make CFLAGS="-g -O0 -Xclang -load -Xclang ${AARDWOLF_DIR}/libAardwolfLLVM.so"
+  # Initialize trace file
+  - ${AARDWOLF_DIR}/aardwolf_external
+  # Run the test suite
+  - make check || true
+  # Extract the results
+  - 'cat test/*.log | egrep "^(PASS|FAIL) " | sed -r "s/ \(exit status:.+//" | cut -d" " -f1,2 --output-delimiter=": " > ${RESULT_FILE}'
+
+# Plugins: inserted from plugins.yml file

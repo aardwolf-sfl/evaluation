@@ -1,0 +1,11 @@
+script:
+  # Compile the incorrect version of the program
+  - clang -Xclang -load -Xclang ${AARDWOLF_DIR}/libAardwolfLLVM.so -g -O0 -Wno-return-type -std=c89 -o buggy buggy.c ${AARDWOLF_DIR}/libaardwolf_runtime_bare.a -lm
+  # Compile the test runner
+  - clang -g -Wno-implicit-function-declaration -o test_runner test_runner.c ${AARDWOLF_DIR}/libaardwolf_runtime.a -lm
+  # Run tests
+  - ./test_runner > ${RESULT_FILE} || true
+
+n_results: 0
+
+# Plugins: inserted from plugins.yml file

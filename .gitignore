@@ -1,0 +1,8 @@
+# Default results directories
+results_effectiveness/*
+results_scalability/*
+
+# Analysis
+__pycache__
+.ipynb_checkpoints
+*.pgf

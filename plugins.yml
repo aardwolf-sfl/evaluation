@@ -1,0 +1,4 @@
+plugins:
+  - sbfl: DStar Spectrum
+  - prob-graph: Probabilistic Dependence
+  - invariants: Likely Invariants
